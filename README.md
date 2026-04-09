@@ -36,7 +36,7 @@
 ---
 
 ## 🆕 Latest Updates
-
+- 🎉 **ACL 2026**: Our paper was **accepted to the ACL 2026 Main Conference**!
 - 📢 **June 2025**: Paper and inference code released!
 
 ## Table of Contents
