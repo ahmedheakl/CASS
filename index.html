@@ -110,7 +110,78 @@
             font-size: 0.8rem;
             margin-top: 0.5rem;
         }
-    </style>
+
+        .acl-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #b02b6a 0%, #7d2391 100%);
+            color: #fff;
+            padding: 0.55em 1.4em;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin: 1.2em 0 0.5em 0;
+            box-shadow: 0 3px 10px rgba(125, 35, 145, 0.25);
+        }
+
+        .acl-badge .star {
+            margin-right: 0.4em;
+            opacity: 0.85;
+        }
+
+        .section-figure {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5em auto;
+            display: block;
+        }
+
+        .section-figure.narrow {
+            max-width: 60%;
+        }
+
+        .section-figure.medium {
+            max-width: 80%;
+        }
+
+        .two-col-figs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            align-items: center;
+            margin: 2em 0;
+        }
+
+        .three-col-figs {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1.4fr;
+            gap: 1.5em;
+            align-items: end;
+            margin: 2em 0 0.8em 0;
+        }
+
+        .three-col-figs figure { margin: 0; }
+        .three-col-figs img { width: 100%; height: auto; display: block; }
+
+        .figure-caption {
+            max-width: 85%;
+            margin: 0.6em auto 2.2em;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .figure-caption b { color: #333; }
+
+        @media (max-width: 768px) {
+            .two-col-figs,
+            .three-col-figs { grid-template-columns: 1fr; }
+            .section-figure.narrow,
+            .section-figure.medium { max-width: 100%; }
+        }
+</style>
 </head>
 
 <body>
@@ -120,20 +191,31 @@
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
                         <figure class="image is-128x128 is-inline-block mb-4">
-                            <img src="static\images\cass_logo.png" alt="CASS Logo">
+                            <img src="static/images/cass_logo.png" alt="CASS Logo">
                         </figure>
                         <h1 class="title is-1 publication-title">CASS: Nvidia to AMD Transpilation with Data, Models,
                             and Benchmark</h1>
+
+                        <div>
+                            <span class="acl-badge">Accepted at ACL 2026 Main Conference</span>
+                        </div>
+
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
                                 <a href="https://www.linkedin.com/in/ahmed-heakl/?originalSubdomain=ae">Ahmed Heakl</a><sup>1</sup>,</span>
                             <span class="author-block">
-                                <a href="https://www.linkedin.com/in/sarim-hashmi-b10b35136/">Sarim Hashmi</a><sup>*1</sup>,</span>
-                            <span class="author-block">
                                 <a href="https://www.linkedin.com/in/gustavostahl/">Gustavo Bertolo Stahl</a><sup>*1</sup>,
                             </span>
                             <span class="author-block">
+                                <a href="https://sarim-mbzuai.github.io/">Sarim Hashmi</a><sup>*1</sup>,</span>
+                            <span class="author-block">
                                 <a href="https://www.linkedin.com/in/eddieseunghunhan/">Seung Hun Eddie Han</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://mukul54.github.io/">Mukul Ranjan</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.linkedin.com/in/amoriodi/">Arina Kharlamova</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
                                 <a href="https://www.linkedin.com/in/salman-khan-12184128/">Salman Khan</a><sup>1,2</sup>,
@@ -198,8 +280,14 @@
         <div class="container is-max-desktop">
             <div class="hero-body">
                 <figure class="image">
-                    <img src="static\images\main_cass.drawio-page-001.jpg" alt="CASS Pipeline">
+                    <img src="static/images/paper_figs/fig1_pipeline.png" alt="CASS Data Collection Pipeline">
                 </figure>
+                <p class="figure-caption">
+                    <b>Figure 1. The CASS data pipeline.</b> CUDA sources are scraped from GitHub, synthesized from
+                    prompts, and translated from OpenCL; each is compiled on Nvidia and AMD toolchains to yield
+                    aligned pairs at both the source level (CUDA ↔ HIP) and the device-assembly level
+                    (SASS ↔ RDNA3) used to train <span class="cass">CASS</span>.
+                </p>
                 <h2 class="subtitle has-text-centered">
                     <span class="cass">CASS</span> is the first large-scale dataset and model suite for
                     cross-architecture GPU code transpilation, targeting both source-level (CUDA ↔ HIP) and
@@ -220,18 +308,19 @@
                             We introduce CASS, the first large-scale dataset and model suite for cross-architecture GPU
                             code transpilation, targeting both source-level (CUDA ↔ HIP) and assembly-level (Nvidia SASS
                             ↔ AMD RDNA3) translation.
-                     
-                            The dataset comprises <b>70k</b> verified code pairs across host and device, addressing a critical
-                            gap in low-level GPU code portability. Leveraging this resource, we train the CASS family of
-                            domain-specific language models, achieving <b>95%</b> source translation accuracy and <b>37.5%</b>
-                            assembly translation accuracy, substantially outperforming commercial baselines such as
-                            GPT-4o, Claude, and Hipify.
-                        
+
+                            The dataset comprises <b>60,694</b> verified code pairs across host and device (from <b>~66k</b>
+                            collected samples), addressing a critical gap in low-level GPU code portability. Leveraging
+                            this resource, we train the CASS family of domain-specific language models, with our flagship
+                            CASS-7B achieving <b>88.17%</b> source translation accuracy and <b>69.11%</b> assembly translation
+                            accuracy, substantially outperforming commercial baselines such as GPT-5.1, Gemini 2.5 Pro,
+                            Claude, and Hipify.
+
                             Our generated code matches native performance in over <b>85%</b> of test cases, preserving runtime
                             and memory behavior. To support rigorous evaluation, we introduce CASS-Bench, a curated
-                            benchmark spanning <b>16</b> GPU domains with ground-truth execution. All data, models, and
-                            evaluation tools are released as open source to foster progress in GPU compiler tooling,
-                            binary compatibility, and LLM-guided hardware translation.
+                            benchmark of <b>369</b> tasks spanning <b>18</b> GPU domains with ground-truth execution. All data,
+                            models, and evaluation tools are released as open source to foster progress in GPU compiler
+                            tooling, binary compatibility, and LLM-guided hardware translation.
                         </p>
                     </div>
                 </div>
@@ -244,12 +333,12 @@
                     <h2 class="title is-3">Contributions</h2>
                     <div class="content has-text-justified">
                         <ul style="font-size: 1.1em; line-height: 1.8;">
-                            <li><strong>CASS Dataset:</strong> We introduce CASS, the first large-scale dataset for GPU transpilation, containing 70k semantically aligned Nvidia ↔ AMD pairs at both the source (CUDA ↔ HIP) and assembly levels (SASS ↔ RDNA3), covering 16 real-world GPU domains.</li>
-                            
-                            <li><strong>CASS-Bench:</strong> We contribute the first evaluation benchmark for cross-architecture GPU translation, with 40 curated tasks across 16 domains, including functionally verified outputs and aligned CUDA/HIP source and SASS/RDNA3 assembly.</li>
-                            
-                            <li><strong>CASS Models:</strong> We release domain-specialized CASS LLMs trained for cross-architecture code translation. Our 7B model achieves 95% source and 37.5% assembly accuracy, outperforming GPT-4o and Claude (0%) on CASS-Bench. Crucially, 85% of translated assemblies preserve execution runtime and memory compared to native, confirming semantic and performance fidelity.</li>
-                            
+                            <li><strong>CASS Dataset:</strong> We introduce CASS, the first large-scale dataset for GPU transpilation, containing <b>60,694</b> semantically aligned Nvidia ↔ AMD pairs at both the source (CUDA ↔ HIP) and assembly levels (SASS ↔ RDNA3), covering <b>18</b> real-world GPU domains.</li>
+
+                            <li><strong>CASS-Bench:</strong> We contribute the first evaluation benchmark for cross-architecture GPU translation, with <b>369</b> curated tasks across <b>18</b> domains, including functionally verified outputs and aligned CUDA/HIP source and SASS/RDNA3 assembly.</li>
+
+                            <li><strong>CASS Models:</strong> We release domain-specialized CASS LLMs trained for cross-architecture code translation. Our flagship <b>CASS-7B</b> achieves <b>88.17%</b> source and <b>69.11%</b> assembly test accuracy (with <b>98.92%</b> source-compile and <b>90.24%</b> assembly-compile rates), vastly outperforming GPT-5.1, Gemini-2.5-Pro, Claude-Haiku-4.5 and Hipify on CASS-Bench. Crucially, 85% of translated assemblies preserve execution runtime and memory compared to native, confirming semantic and performance fidelity.</li>
+
                             <li><strong>CASS Dataset Pipeline:</strong> We designed a scalable pipeline for scraping, synthesizing, transpiling, and compiling CUDA/HIP code into aligned host and device assemblies across Nvidia and AMD GPUs.</li>
                         </ul>
                     </div>
@@ -261,6 +350,35 @@
 
     <section class="section">
         <div class="container is-max-desktop">
+            <!-- Compiler Stacks. -->
+            <div class="columns is-centered">
+                <div class="column">
+                    <h2 class="title is-3">CUDA vs. HIP Compiler Stacks</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            A key motivation for <span class="cass">CASS</span> is the deep divergence between the
+                            Nvidia and AMD compilation pipelines. Nvidia's stack is largely opaque: accessing device
+                            assembly (SASS) requires first compiling to binary, then using <code>cuobjdump</code>. AMD's
+                            process is transparent — device assembly (RDNA3) can be inspected and modified before host
+                            integration. This asymmetry forces any cross-architecture translator to reason about
+                            fundamentally different toolchains.
+                        </p>
+                        <figure class="image">
+                            <img src="static/images/paper_figs/fig2_stacks.png"
+                                 alt="Nvidia (left) and AMD (right) compilation pipelines"
+                                 class="section-figure medium">
+                        </figure>
+                        <p class="figure-caption">
+                            <b>Figure 2. CUDA vs. HIP compilation stacks.</b> Nvidia's pipeline (left) is closed:
+                            device code is embedded in a fat binary and SASS must be recovered post-hoc with
+                            <code>cuobjdump</code>. AMD's pipeline (right) is transparent: RDNA3 assembly is emitted
+                            as a plain <code>.s</code> file and can be inspected or modified before host linking.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Compiler Stacks. -->
+
             <!-- CASS Dataset. -->
             <div class="columns is-centered">
                 <div class="column">
@@ -268,13 +386,11 @@
                     <div class="content has-text-justified">
                         <p>
                             CASS is the first dataset to enable source- and assembly-level translation research for GPU
-                            architectures, comprising 70k semantically aligned CUDA–HIP source pairs and their
-                            corresponding host and device assemblies.
+                            architectures, comprising <b>60,694</b> semantically aligned CUDA–HIP source pairs and their
+                            corresponding host and device assemblies, drawn from three complementary sources:
+                            <b>Stack</b> (real-world GitHub code, 34.1k final samples), <b>Synthetic</b> (prompt-generated
+                            via LLMs, 20.0k) and <b>OpenCL</b> (kernels translated to CUDA, 6.6k).
                         </p>
-                        <figure class="image">
-                            <img src="static\images\main_cass-distribution.drawio_page-0001.jpg" alt="Dataset Composition"
-                                class="cass-bench-image">
-                        </figure>
                     </div>
                 </div>
             </div>
@@ -284,14 +400,35 @@
                     <h2 class="title is-3">CASS-Bench</h2>
                     <div class="content has-text-justified">
                         <p>
-                            CASS-Bench is a 40-sample evaluation suite spanning 16 GPU-centric domains, each
-                            represented
-                            by 1-5 curated prompts. The benchmark includes parallel algorithms, image processing,
-                            scientific computing, linear algebra, deep learning, and more.
+                            CASS-Bench is a <b>369-sample</b> evaluation suite spanning <b>18</b> GPU-centric domains —
+                            parallel algorithms, image processing, scientific computing, linear algebra, deep learning,
+                            signal processing, and more. Each sample is compiled and executed end-to-end, with
+                            ground-truth HIP outputs for strict functional verification.
                         </p>
-                        <figure class="image">
-                            <img src="static\images\cuda_prompts_by_category_page-0001.jpg" alt="CASS-Bench Domains" class="pipeline-image">
-                        </figure>
+                        <div class="three-col-figs">
+                            <figure>
+                                <img src="static/images/paper_figs/fig3a_category.png"
+                                     alt="CASS-Bench category distribution">
+                            </figure>
+                            <figure>
+                                <img src="static/images/paper_figs/fig3b_domains.png"
+                                     alt="Training-sample domain distribution across 18 GPU domains">
+                            </figure>
+                            <figure>
+                                <img src="static/images/paper_figs/fig3c_loc.png"
+                                     alt="Verbosity (lines of code) across CUDA, HIP, SASS, RDNA3">
+                            </figure>
+                        </div>
+                        <p class="figure-caption">
+                            <b>Figure 3. Coverage of CASS and CASS-Bench.</b>
+                            <b>(a)</b> CASS-Bench category mix across the 369 evaluation tasks.
+                            <b>(b)</b> Training-sample distribution over the <b>18</b> GPU-centric domains covered by
+                            the dataset (parallel algorithms, image processing, linear algebra, scientific computing,
+                            deep learning, signal processing, …).
+                            <b>(c)</b> Verbosity — distribution of lines of code across CUDA, HIP, Nvidia SASS, and
+                            AMD RDNA3 — showing that assembly sequences are an order of magnitude longer than their
+                            source counterparts.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -300,76 +437,138 @@
                 <div class="column">
                     <h2 class="title is-3">Results</h2>
 
-                    <h3 class="title is-4">Performance Comparison</h3>
+                    <h3 class="title is-4">Performance Comparison on CASS-Bench</h3>
                     <div class="content has-text-justified">
                         <p>
-                            Our CASS-7B model significantly outperforms existing tools and LLMs in both source-to-source
-                            and assembly-to-assembly translation tasks.
+                            On the full 369-task CASS-Bench, our flagship <b>CASS-sm80-7B</b> dominates both
+                            source-to-source and the much harder assembly-to-assembly task, beating frontier
+                            closed-source models (GPT-5.1, Claude-Haiku-4.5, Gemini-2.5-Pro), the rule-based transpiler
+                            Hipify, and much larger open coder models. Metrics below: <b>Test Acc.</b> is strict
+                            end-to-end accuracy (compile + exact output match); <b>Compile Rate</b> is the share of
+                            samples that compiled successfully.
                         </p>
                     </div>
 
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth results-table">
                         <thead>
                             <tr>
-                                <th>Model</th>
-                                <th>Assembly Accuracy (%)</th>
-                                <th>Source-to-Source Accuracy (%)</th>
+                                <th rowspan="2">Model</th>
+                                <th colspan="2">Assembly</th>
+                                <th colspan="2">Source</th>
+                            </tr>
+                            <tr>
+                                <th>Test Acc. ↑</th>
+                                <th>Compile Rate ↑</th>
+                                <th>Test Acc. ↑</th>
+                                <th>Compile Rate ↑</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>ZLUDA</td>
-                                <td>2.5%</td>
-                                <td>27.5%</td>
-                            </tr>
-                            <tr>
-                                <td>Hipify</td>
-                                <td>-</td>
-                                <td>87.5%</td>
-                            </tr>
-                            <tr>
-                                <td>GPT-4o</td>
-                                <td>0%</td>
-                                <td>90.0%</td>
-                            </tr>
-                            <tr>
-                                <td>Gemini-2.0-Flash</td>
-                                <td>0%</td>
-                                <td>80.0%</td>
-                            </tr>
-                            <tr>
-                                <td>Claude-3.7</td>
-                                <td>0%</td>
-                                <td>90.0%</td>
-                            </tr>
-                            <tr>
-                                <td>Qwen2.5-Coder-32B</td>
-                                <td>25.0%</td>
-                                <td>85.0%</td>
-                            </tr>
-                            <tr>
-                                <td>CASS-1.5B</td>
-                                <td>12.5%</td>
-                                <td>90.0%</td>
-                            </tr>
-                            <tr>
-                                <td>CASS-3B</td>
-                                <td>20.0%</td>
-                                <td>92.5%</td>
-                            </tr>
-                            <tr>
-                                <td class="has-text-weight-bold">CASS-7B</td>
-                                <td class="has-text-weight-bold">37.5%</td>
-                                <td class="has-text-weight-bold">95.0%</td>
+                            <tr><td>ZLUDA</td><td>7.86</td><td>8.40</td><td>19.24</td><td>27.59</td></tr>
+                            <tr><td>Hipify</td><td>–</td><td>–</td><td>87.46</td><td>92.95</td></tr>
+                            <tr><td>GPT-5-mini</td><td>14.63</td><td>15.72</td><td>66.67</td><td>93.91</td></tr>
+                            <tr><td>Claude-Haiku-4.5</td><td>11.24</td><td>13.87</td><td>69.42</td><td>95.27</td></tr>
+                            <tr><td>Gemini-2.5-Flash</td><td>8.94</td><td>10.30</td><td>65.95</td><td>94.98</td></tr>
+                            <tr><td>GPT-5.1</td><td>22.22</td><td>25.20</td><td>84.95</td><td>98.92</td></tr>
+                            <tr><td>Gemini-2.5-Pro</td><td>6.50</td><td>8.94</td><td>54.25</td><td>93.19</td></tr>
+                            <tr><td>Qwen2.5-Coder-32B</td><td>5.42</td><td>6.50</td><td>6.22</td><td>17.77</td></tr>
+                            <tr><td>DeepSeek-Coder-V2-Lite</td><td>2.99</td><td>4.00</td><td>24.17</td><td>35.82</td></tr>
+                            <tr><td>CASS-sm85-1.5B</td><td>54.74</td><td>67.21</td><td>85.91</td><td>96.75</td></tr>
+                            <tr><td>CASS-sm85-3B</td><td>59.89</td><td>81.84</td><td>86.99</td><td>98.37</td></tr>
+                            <tr><td>CASS-sm85-7B</td><td>68.83</td><td>75.88</td><td>87.81</td><td>98.56</td></tr>
+                            <tr style="background:#fff3cd;">
+                                <td class="has-text-weight-bold">CASS-sm80-7B</td>
+                                <td class="has-text-weight-bold">69.11</td>
+                                <td class="has-text-weight-bold">90.24</td>
+                                <td class="has-text-weight-bold">88.17</td>
+                                <td class="has-text-weight-bold">98.92</td>
                             </tr>
                         </tbody>
                     </table>
 
+                    <h3 class="title is-4">Syntactic Similarity (CHRF) between CUDA and HIP</h3>
+                    <div class="content has-text-justified">
+                        <p>
+                            Source-level CUDA↔HIP code is highly similar (CHRF &gt; 90% on the Stack subset), which is
+                            why string-rewriting tools like Hipify succeed on easy inputs. Assembly-level SASS↔RDNA3
+                            similarity is near zero — the task is genuinely cross-architecture, not surface-level text
+                            substitution.
+                        </p>
+                        <figure class="image">
+                            <img src="static/images/paper_figs/fig6_chrf.png"
+                                 alt="CHRF between CUDA and HIP across code levels"
+                                 class="section-figure medium">
+                        </figure>
+                        <p class="figure-caption">
+                            <b>Figure 6. CHRF similarity between CUDA and HIP.</b> At the source level the
+                            distributions peak near 1.0 — CUDA and HIP strings are almost identical modulo a
+                            vocabulary rename. At the assembly level, SASS ↔ RDNA3 similarity collapses toward zero,
+                            showing that device-asm translation is a genuine cross-ISA mapping rather than a
+                            find-and-replace.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Results. -->
+        </div>
+    </section>
+
+    <!-- Analysis. -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column">
+                    <h2 class="title is-3">Analysis</h2>
+
+                    <h3 class="title is-4">Impact of Input Length</h3>
+                    <div class="content has-text-justified">
+                        <p>
+                            All three metrics — test accuracy, compile rate, and code similarity — degrade as the CUDA
+                            assembly input grows longer. Beyond ~1,250 lines, performance collapses to near zero,
+                            motivating our 16K-token training window together with RoPE extrapolation to ~32.7K tokens
+                            at inference time.
+                        </p>
+                        <figure class="image">
+                            <img src="static/images/paper_figs/fig7_inputlen.png"
+                                 alt="Effect of input length on assembly translation performance"
+                                 class="section-figure medium">
+                        </figure>
+                        <p class="figure-caption">
+                            <b>Figure 7. Effect of input length on assembly translation.</b> Test accuracy, compile
+                            rate, and code similarity all decline monotonically as the CUDA SASS input grows, and
+                            drop to near zero past <b>~1,250 lines</b>. This motivates training with a 16K-token
+                            window and using RoPE extrapolation to push inference up to <b>~32.7K</b> tokens.
+                        </p>
+                    </div>
+
+                    <h3 class="title is-4">Where the Model Fails</h3>
+                    <div class="content has-text-justified">
+                        <p>
+                            Assembly-level failures concentrate in compute-heavy categories — <b>Vector Operations</b>
+                            (27), <b>Linear Algebra</b> (14), and <b>Physics Simulation</b> (9) — where long kernels and
+                            high register pressure push the model past its effective context. Structurally simpler
+                            domains (Basic Operations, Scientific Computing) fail only in isolated cases.
+                        </p>
+                        <figure class="image">
+                            <img src="static/images/paper_figs/fig8_failures.png"
+                                 alt="Assembly-level failures across categories"
+                                 class="section-figure medium">
+                        </figure>
+                        <p class="figure-caption">
+                            <b>Figure 8. Assembly-level failures by category.</b> Errors concentrate in compute-heavy
+                            domains — <b>Vector Operations</b> (27), <b>Linear Algebra</b> (14) and
+                            <b>Physics Simulation</b> (9) — where long kernels and high register pressure stretch the
+                            model past its effective context. Structurally simpler domains (Basic Operations,
+                            Scientific Computing) fail only in isolated cases.
+                        </p>
+                    </div>
+
                     <h3 class="title is-4">Ablation Study</h3>
                     <div class="content has-text-justified">
                         <p>
-                            Our ablation studies demonstrate the contribution of different data sources and techniques
-                            to the overall performance of CASS models.
+                            Each stage of the CASS data recipe adds measurable lift — synthetic data delivers the
+                            largest jump on assembly translation, and RoPE extrapolation closes the gap on long
+                            inputs that would otherwise truncate.
                         </p>
                     </div>
 
@@ -377,43 +576,28 @@
                         <thead>
                             <tr>
                                 <th>Experiment</th>
-                                <th>Source Accuracy</th>
-                                <th>Assembly Accuracy</th>
+                                <th>Source Acc.</th>
+                                <th>Assembly Acc.</th>
                                 <th>Δ Impact</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Stack subset</td>
-                                <td>87.5%</td>
-                                <td>17.5%</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>+Synthetic</td>
-                                <td>95.0%</td>
-                                <td>30.0%</td>
-                                <td>+12.5%</td>
-                            </tr>
-                            <tr>
-                                <td>+OpenCL</td>
-                                <td>95.0%</td>
-                                <td>32.5%</td>
-                                <td>+2.5%</td>
-                            </tr>
-                            <tr>
-                                <td>+RoPE Extrapolation</td>
-                                <td>95.0%</td>
-                                <td>37.5%</td>
-                                <td>+5.0%</td>
+                            <tr><td>Stack subset</td><td>79.67%</td><td>48.24%</td><td>–</td></tr>
+                            <tr><td>+ Synthetic</td><td>84.28%</td><td>59.88%</td><td>+11.65%</td></tr>
+                            <tr><td>+ OpenCL</td><td>87.18%</td><td>65.23%</td><td>+5.35%</td></tr>
+                            <tr style="background:#fff3cd;">
+                                <td class="has-text-weight-bold">+ RoPE Extrapolation</td>
+                                <td class="has-text-weight-bold">88.17%</td>
+                                <td class="has-text-weight-bold">69.11%</td>
+                                <td class="has-text-weight-bold">+3.88%</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <!--/ Results. -->
         </div>
     </section>
+    <!--/ Analysis. -->
 
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
