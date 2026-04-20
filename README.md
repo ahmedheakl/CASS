@@ -23,9 +23,9 @@
   <a href="https://ahmedheakl.github.io/"><b>Ahmed Heakl</b></a>, 
   <a href="https://www.linkedin.com/in/gustavostahl/"><b>Gustavo Bertolo Stahl<sup>*</sup></b></a>,
   <a href="https://www.linkedin.com/in/sarim-hashmi-b10b35136/"><b>Sarim Hashmi<sup>*</sup></b></a>, 
-  <a href="https://www.linkedin.com/in/eddieseunghunhan/"><b>Seung Hun Eddie Han</b></a><br> 
-  <a href="https://scholar.google.com/citations?user=fFBR0j0AAAAJ"><b>Mukul Ranjan</b></a><br> 
-  <a href="https://scholar.google.com/citations?user=-3GbddYAAAAJ"><b>Arina Kharlamova</b></a><br> 
+  <a href="https://www.linkedin.com/in/eddieseunghunhan/"><b>Seung Hun Eddie Han</b></a><br>
+  <a href="https://scholar.google.com/citations?user=fFBR0j0AAAAJ"><b>Mukul Ranjan</b></a>,
+  <a href="https://scholar.google.com/citations?user=-3GbddYAAAAJ"><b>Arina Kharlamova</b></a>,
   <a href="https://salman-h-khan.github.io/"><b>Salman Khan</b></a>,
   <a href="https://ma3mool.github.io/"><b>Abdulrahman Mahmoud</b></a>
 </p>
